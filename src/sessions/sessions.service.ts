@@ -12,31 +12,33 @@ export class SessionsService {
   ) {}
 
   async create(createSessionDto: CreateSessionDto): Promise<Session> {
-    const sessionDate = new Date(createSessionDto.date);
+  const sessionDate = new Date(createSessionDto.date);
 
-    
-    if (sessionDate <= new Date()) {
-      throw new BadRequestException('Cannot book a session in the past.');
-    }
-
-    const isBusy = await this.sessionModel.exists({
-      mentorId: createSessionDto.mentorId,
-      date: sessionDate,
-    });
-
-    if (isBusy) {
-      throw new BadRequestException('Mentor is not available at this time.');
-    }
-
-   
-    const newSession = new this.sessionModel({
-      ...createSessionDto,
-      date: sessionDate,
-      status: 'pending',
-    });
-
-    return newSession.save();
+  if (sessionDate <= new Date()) {
+    throw new BadRequestException('Cannot book a session in the past.');
   }
+
+  const mentorObjectId = new Types.ObjectId(createSessionDto.mentorId);
+
+  const isBusy = await this.sessionModel.exists({
+    mentorId: mentorObjectId,
+    date: sessionDate,
+  });
+
+  if (isBusy) {
+    throw new BadRequestException('Mentor is not available at this time.');
+  }
+
+  const newSession = new this.sessionModel({
+    mentorId: mentorObjectId,
+    menteeId: new Types.ObjectId(createSessionDto.menteeId),
+    date: sessionDate,
+    status: 'pending',
+  });
+
+  return newSession.save();
+}
+
 
   async findAllByMentor(mentorId: string): Promise<Session[]> {
     return this.sessionModel.aggregate([
