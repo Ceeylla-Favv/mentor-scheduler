@@ -14,7 +14,6 @@ import { SessionsModule } from './sessions/sessions.module';
   imports: [ConfigModule],
   useFactory: async (configService: ConfigService) => {
     const uri = configService.get<string>('MONGODB_URI');
-    // console.log('Loaded Mongo URI:', uri);
     return { uri };
   },
   inject: [ConfigService],
