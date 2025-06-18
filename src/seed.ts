@@ -1,7 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SessionsService } from './sessions/sessions.service';
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
+
 
 async function bootstrap() {
   const app = await NestFactory.createApplicationContext(AppModule);
@@ -9,14 +10,14 @@ async function bootstrap() {
 
   const sampleSessions = [
     {
-      mentorId: '664fdd5595c5f3aa76d21a3f',
-      menteeId: '664fdd5595c5f3aa76d21a40',
-      date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 days from now
+      mentorId: new Types.ObjectId('664fdd5595c5f3aa76d21a3f'),
+      menteeId: new Types.ObjectId('664fdd5595c5f3aa76d21a40'),
+      date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
     },
     {
-      mentorId: '664fdd5595c5f3aa76d21a3f',
-      menteeId: '664fdd5595c5f3aa76d21a40',
-      date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days from now
+      mentorId: new Types.ObjectId('664fdd5595c5f3aa76d21a3f'),
+      menteeId: new Types.ObjectId('664fdd5595c5f3aa76d21a40'),
+      date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     },
   ];
 
