@@ -37,7 +37,7 @@ This is a backend system built with **NestJS** and **MongoDB** that allows **men
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/mentor-scheduler.git
+git clone https://github.com/Ceeylla-Favv/mentor-scheduler.git
 cd mentor-scheduler
 ```
 
@@ -131,19 +131,9 @@ npm run build         # Build the project
 npm run start:prod    # Start in production mode
 ```
 
-## ✅ Commit Convention
-
-Follows **Conventional Commits**. Examples:
-
-```
-chore(seed): update seed script with valid ObjectIds
-feat(sessions): prevent booking past dates
-fix(session): return empty array instead of null
-```
-
 ## 👩🏽‍💻 Author
 
-**Bertley Priscilla Goddivinefavour**
+**Bertley Priscilla**
 
 ## 📄 License
 
