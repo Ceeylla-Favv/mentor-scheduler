@@ -23,12 +23,4 @@ export class CreateSessionDto {
   @IsDateString()
   date: string;
 
-   @ApiProperty({
-    description: 'Status of the session',
-    enum: ['pending', 'confirmed', 'canceled'],
-    required: false,
-    example: 'pending',
-  })
-  @IsEnum(['pending', 'confirmed', 'canceled'])
-  status?: 'pending' | 'confirmed' | 'canceled';
 }
